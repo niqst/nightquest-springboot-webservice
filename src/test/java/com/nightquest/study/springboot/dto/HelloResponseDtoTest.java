@@ -1,5 +1,6 @@
 package com.nightquest.study.springboot.dto;
 
+import com.nightquest.study.springboot.dto.hello.HelloResponseDto;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;

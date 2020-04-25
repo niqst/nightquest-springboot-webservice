@@ -1,5 +1,6 @@
 package com.nightquest.study.springboot.web;
 
+import com.nightquest.study.springboot.web.hello.HelloController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
