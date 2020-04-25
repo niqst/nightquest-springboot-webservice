@@ -1,4 +1,4 @@
-package com.nightquest.study.springboot;
+package com.nightquest.study.springboot.domain.posts;
 
 import com.nightquest.study.springboot.domain.posts.Posts;
 import com.nightquest.study.springboot.domain.posts.PostsRepository;

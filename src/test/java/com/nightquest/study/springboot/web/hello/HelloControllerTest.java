@@ -1,4 +1,4 @@
-package com.nightquest.study.springboot.web;
+package com.nightquest.study.springboot.web.hello;
 
 import com.nightquest.study.springboot.web.hello.HelloController;
 import org.junit.Test;

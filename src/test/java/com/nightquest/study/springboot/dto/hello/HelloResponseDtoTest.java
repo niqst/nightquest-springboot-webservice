@@ -1,4 +1,4 @@
-package com.nightquest.study.springboot.dto;
+package com.nightquest.study.springboot.dto.hello;
 
 import com.nightquest.study.springboot.dto.hello.HelloResponseDto;
 import org.junit.Test;
