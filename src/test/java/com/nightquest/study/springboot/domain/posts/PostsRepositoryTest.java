@@ -2,6 +2,7 @@ package com.nightquest.study.springboot.domain.posts;
 
 import com.nightquest.study.springboot.domain.posts.Posts;
 import com.nightquest.study.springboot.domain.posts.PostsRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,6 +15,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class PostsRepositoryTest {
@@ -44,6 +46,10 @@ public class PostsRepositoryTest {
         assertThat(posts.getTitle()).isEqualTo(title);
         assertThat(posts.getContent()).isEqualTo(content);
         assertThat(posts.getAuthor()).isEqualTo(author);
+
+        log.info("now                   : {}", now);
+        log.info("posts.getCreatedTime  : {}", posts.getCreatedDate());
+        log.info("posts.getModifiedTime : {}", posts.getModifiedDate());
 
         assertThat(posts.getCreatedDate()).isAfterOrEqualTo(now);
         assertThat(posts.getModifiedDate()).isAfterOrEqualTo(now);
