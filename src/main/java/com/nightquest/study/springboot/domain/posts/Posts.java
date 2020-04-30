@@ -1,5 +1,6 @@
 package com.nightquest.study.springboot.domain.posts;
 
+import com.nightquest.study.springboot.domain.BaseTimeEntity;
 import com.nightquest.study.springboot.dto.posts.PostsUpdateRequestDto;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,7 +13,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @Entity
-public class Posts {
+public class Posts extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
