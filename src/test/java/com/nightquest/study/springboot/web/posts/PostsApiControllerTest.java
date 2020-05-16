@@ -5,6 +5,7 @@ import com.nightquest.study.springboot.domain.posts.PostsRepository;
 import com.nightquest.study.springboot.dto.posts.PostsResponseDto;
 import com.nightquest.study.springboot.dto.posts.PostsSaveRequestDto;
 import com.nightquest.study.springboot.dto.posts.PostsUpdateRequestDto;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,9 +20,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
+@Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 public class PostsApiControllerTest {
@@ -40,7 +44,7 @@ public class PostsApiControllerTest {
     private PostsRepository postsRepository;
 
     @After
-    public void destroy_all() {
+    public void cleanUp() {
         postsRepository.deleteAll();
     }
 
@@ -113,5 +117,25 @@ public class PostsApiControllerTest {
         Posts updatedPosts = postsRepository.findAll().get(0);
         assertThat(updatedPosts.getTitle()).isEqualTo(updateTitle);
         assertThat(updatedPosts.getContent()).isEqualTo(updateContent);
+    }
+
+    @Test
+    public void delete_posts() {
+        //save new posts
+        Posts savedPosts = postsRepository.save(Posts.builder()
+                .title(title)
+                .author(author)
+                .content(content)
+                .build());
+
+        String url = "http://localhost:" + port + POSTS_URL + "/" + savedPosts.getId();
+        log.info("delete url : {}", url);
+
+        //delete
+        restTemplate.delete(url);
+
+        List<Posts> postsList = postsRepository.findAll();
+
+        assertThat(postsList.size()).isLessThanOrEqualTo(0);
     }
 }
