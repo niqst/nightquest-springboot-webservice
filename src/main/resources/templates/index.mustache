@@ -1,0 +1,35 @@
+{{>layouts/header}}
+
+<h1>NightQuest-SpringBoot-WebService</h1>
+
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-6">
+            <a href="/posts/save" role="button" class="btn btn-primary">reg posts</a>
+        </div>
+    </div>
+</div>
+<br>
+<table class="table table-horizontal table-bordered">
+    <thead class="thead-strong">
+        <tr>
+            <th>No.</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody id="tbody">
+        {{#posts}}
+            <tr>
+                <td>{{id}}</td>
+                <td><a class="nounderline" href="/posts/update/{{id}}">{{title}}</a></td>
+                <td>{{author}}</td>
+                <td>{{modifiedTime}}</td>
+            </tr>
+        {{/posts}}
+    </tbody>
+</table>
+
+
+{{>layouts/footer}}
