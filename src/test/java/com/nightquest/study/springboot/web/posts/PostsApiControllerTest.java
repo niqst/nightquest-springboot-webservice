@@ -5,6 +5,7 @@ import com.nightquest.study.springboot.domain.posts.PostsRepository;
 import com.nightquest.study.springboot.dto.posts.PostsResponseDto;
 import com.nightquest.study.springboot.dto.posts.PostsSaveRequestDto;
 import com.nightquest.study.springboot.dto.posts.PostsUpdateRequestDto;
+import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,9 +20,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 import javax.annotation.Resource;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = RANDOM_PORT)
 public class PostsApiControllerTest {
     //TODO 실제 controller와 동기화되도록 설정에서 관리 필요
     final private String POSTS_URL = "/api/v1/posts";
@@ -36,6 +38,11 @@ public class PostsApiControllerTest {
     private TestRestTemplate restTemplate;
     @Resource
     private PostsRepository postsRepository;
+
+    @After
+    public void destroy_all() {
+        postsRepository.deleteAll();
+    }
 
     @Test
     public void get_posts() {
